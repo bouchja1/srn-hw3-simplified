@@ -43,7 +43,8 @@ axios.interceptors.request.use(request => {
 
 export const loadTopRatedMovies = () => {
   /*
-  @Vena - GET je HTTP metoda pro ziskani obsahu - tedy my zde jen zadame o data, ktera obsahuji seznam
+  @Vena - tohle a loadMovieDetail jsou ty requesty na server
+  GET je HTTP metoda pro ziskani obsahu - tedy my zde jen zadame o data, ktera obsahuji seznam
   nejlepe hodnocenych filmu.
   Ta zadost jde realne na URL: http://api.themoviedb.org/3/movie/top_rated?api_key=4aa883f95999ec813b8bfaf319f3972b
    */
