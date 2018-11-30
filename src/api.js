@@ -48,7 +48,7 @@ export const loadTopRatedMovies = () => {
   nejlepe hodnocenych filmu.
   Ta zadost jde realne na URL: http://api.themoviedb.org/3/movie/top_rated?api_key=4aa883f95999ec813b8bfaf319f3972b
    */
-  return axios.get("/movie/top_rated")
+  return axios.get("/movie/top_rated") // diky interceptoru co mame vyse se nam to transformuje na movie/top_rated?api_key=4aa883f95999ec813b8bfaf319f3972b a baseUrl (http://api.themoviedb.org/3) doplnuje inicializace axiosu
 }
 
 export const loadMovieDetail = movieId => {
