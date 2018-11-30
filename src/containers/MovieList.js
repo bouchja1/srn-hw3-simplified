@@ -45,7 +45,17 @@ export default class MovieList extends React.PureComponent<null> {
   - v nasem pripade tedy pote co se plne nacte tahle komponenta MovieList.
    */
   componentDidMount() {
-    this._makeRemoteRequest() // @Vena - a tady uz volam jinou funkci komponenty, kterou nacitam seznam filmu
+    // @Vena - nyni volam fci souboru api.js loadTopRatedMovies - pro nacteni toho seznamu top_rated filmu
+    loadTopRatedMovies()
+      .then(response => {
+        // @Vena - 'then' znamena, ze jsem cekal na odpoved. Tedy program cekal az do doby, nez dostal z API odpoved -> "response" - a nyni s temi daty mohu dal pracovat
+        this.setState(
+          () => ({
+            // @Vena - do stavu komponenty, konkr. do pole "movies" si nastavim odpoved z API -> ta obsahuje pole objektu s vlastnostmi pro dane filmy
+            movies: response.data.results,
+          }),
+        )
+      })
   }
 
   _showDetail = movieId => {
@@ -66,20 +76,6 @@ export default class MovieList extends React.PureComponent<null> {
   _keyExtractor = item => `item-${item.id}`
 
   _renderSeparator = () => <View style={styles.listSeparator}/>
-
-  _makeRemoteRequest() {
-    // @Vena - nyni volam fci souboru api.js loadTopRatedMovies - pro nacteni toho seznamu top_rated filmu
-    loadTopRatedMovies()
-      .then(response => {
-        // @Vena - 'then' znamena, ze jsem cekal na odpoved. Tedy program cekal az do doby, nez dostal z API odpoved -> "response" - a nyni s temi daty mohu dal pracovat
-        this.setState(
-          () => ({
-            // @Vena - do stavu komponenty, konkr. do pole "movies" si nastavim odpoved z API -> ta obsahuje pole objektu s vlastnostmi pro dane filmy
-            movies: response.data.results,
-          }),
-        )
-      })
-  }
 
   render() {
     const { movies } = this.state
