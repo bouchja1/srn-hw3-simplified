@@ -9,7 +9,7 @@ const API_KEY = "4aa883f95999ec813b8bfaf319f3972b"
 
 /*
 @Vena - inicializace "klienta" - vlastne si tim navazujeme spojeni s tim serverem, kde bezi filmove API, abychom
-s nim mohli komunikovat a zadat ho o data (to rated filmy, detail filmu apod.)
+s nim mohli komunikovat a zadat ho o data (top rated filmy, detail filmu apod.)
  */
 const axios = axiosLib.create({
   baseURL: "http://api.themoviedb.org/3/",
@@ -22,10 +22,10 @@ const axios = axiosLib.create({
 
 /*
 @Vena - nyni uz mame inicializovaneho klienta (ulozili jsme si ho do promenne 'axios') a definujeme si
-interceptor. Interceptor je jen "pretizeni" funkce knihovny a zde to mame proto, abychom porad dokola,
-kdybychom meli vice requestu na ten server (ten mame jen na top_rated filmy a na detail filmu, takze
-to zas tak pracny neni, ale kdyby jich bylo vice...), nemuseli psal za kazdou tu API URL (napr. /movie/top_rated)
-jeste ?api_key=${API_KEY}
+interceptor. Interceptor je jen "pretizeni" te knihovny (zde konkr. pretizime objekt request)
+a zde to mame proto, abychom porad dokola, kdybychom meli vice requestu na ten server
+(ted mame jen na top_rated filmy a na detail filmu, takze to zas tak pracny neni, ale kdyby jich bylo vice...),
+nemuseli psal za kazdou tu API URL (napr. /movie/top_rated) jeste ?api_key=${API_KEY}
  */
 axios.interceptors.request.use(request => {
   return {
